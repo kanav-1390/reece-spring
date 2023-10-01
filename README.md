@@ -1,79 +1,96 @@
-Spring Boot Dockerized Project Readme
-This is a sample Spring Boot project that demonstrates how to containerize a Spring Boot application using Docker. Docker allows you to package your application along with its dependencies into a single container, making it easier to deploy and manage in various environments.
 
-Prerequisites
-Before you begin, ensure you have the following tools installed:
+# Reece Spring Boot
 
-Docker: Install Docker
-Java Development Kit (JDK) 8 or higher: Install JDK
-Spring Boot: Spring Boot Installation Guide
-Getting Started
-Follow these steps to set up and run the Spring Boot application in a Docker container:
+A brief description of what this project does and who it's for
 
-Clone the repository:
+Spring boot project to have multiple endpoints to maintain address books and contacts
 
-shell
-Copy code
-git clone https://github.com/yourusername/spring-boot-dockerized.git
-Navigate to the project directory:
+## Features
 
-shell
-Copy code
-cd spring-boot-dockerized
-Build the Spring Boot application using Maven or Gradle:
-
-For Maven:
-
-shell
-Copy code
-mvn clean package
-For Gradle:
-
-shell
-Copy code
-./gradlew clean build
-Build the Docker image using the provided Dockerfile:
-
-shell
-Copy code
-docker build -t spring-boot-dockerized .
-Run the Docker container:
-
-shell
-Copy code
-docker run -p 8080:8080 spring-boot-dockerized
-This command maps port 8080 in the container to port 8080 on your host machine.
-
-Access the Spring Boot application in your web browser or using a tool like curl:
-
-arduino
-Copy code
-http://localhost:8080
-You should see a "Hello, Spring Boot!" message if the application is running successfully.
-
-Configuration
-You can customize the application's configuration by modifying the application.properties or application.yml files in the src/main/resources directory.
-
-Docker Configuration
-The Docker configuration for this project is defined in the Dockerfile. You can modify it to suit your specific requirements, such as adding environment variables or adjusting container settings.
-
-Contributing
-If you'd like to contribute to this project or report issues, please follow the guidelines in the CONTRIBUTING.md file.
-
-License
-This project is licensed under the MIT License.
-
-Acknowledgments
-Spring Boot: A powerful and flexible framework for building Java applications.
-Docker: A platform for developing, shipping, and running applications in containers.
-Contact
-If you have any questions or need further assistance, feel free to contact us at your.email@example.com.
-
-Thank you for using this Spring Boot Dockerized project!
+- Embedded in Mem Database used (H2)
+- Dockerised the solution
+- Unit test cases written using DtaJpa
 
 
+## API Reference
+
+#### Get all address
+
+```http
+  GET /address-books
+```
+ Returns the address stored in address book table
 
 
+#### Get contact from a  certain address
+```http
+  GET /{id}/contacts
+```
 
-Regenerate
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of address-book table |
+
+
+#### Deletes addesses from address-book table
+```http
+  Delete /address-books/{id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of address-book table |
+
+
+#### Posts new Addresses in address-book table
+```http
+  Post /address-books
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. name of address-book table |
+| `phoneNumber`      | `string` | **Required**. phone nUmber of the user |
+| `contactid`      | `string` | **Required**. Primary key of contact table |
+
+#### Posts new Contact in address-book table
+```http
+  Post /contacts
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. name of address-book table |
+| `emailId`      | `string` | **Required**. pemailId of the contact |
+
+
+#### Deletes contacts from contact table
+```http
+  Delete /contacts/{id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of contact table |
+
+#### Get all contacts
+
+```http
+  GET /contacts
+```
+ Returns the contacts stored in contact table
+
+#### Get all unique contacts for an adress
+
+```http
+  GET /api/contacts/all
+```
+ Returns the unique contacts stored
+## Deployment
+
+To run this project
+
+```bash
+  docker run -p 8080:8080 reece_spring_test:kanav_reece
+```
 
