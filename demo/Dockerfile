@@ -3,7 +3,7 @@ FROM openjdk:8-jdk-alpine
 
 # Set the working directory in the container
 WORKDIR /app
-
+   
 # Copy the packaged Spring Boot application JAR file into the container
 COPY target/reece_spring-3.1.4.jar app.jar
 
